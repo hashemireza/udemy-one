@@ -15,31 +15,33 @@
                 </div>
 
                 <div class="card-body">
+                    @include('layouts._message')
+                    
                 	@foreach($questions as $question)
-                	<div class="media">
-                        <div class="d-flex flex-column counters">
-                            <div class="vote">
-                                <strong>{{ $question->votes  }}</strong> {{ str_plural('vote', $question->votes) }}
+                    	<div class="media">
+                            <div class="d-flex flex-column counters">
+                                <div class="vote">
+                                    <strong>{{ $question->votes  }}</strong> {{ str_plural('vote', $question->votes) }}
+                                </div>
+                                <div class="status {{ $question->status }}">
+                                    <strong>{{ $question->answers  }}</strong> {{ str_plural('answer', $question->asnwers) }}
+                                </div>
+                                <div class="view">
+                                    {{ $question->views . " " . str_plural('view', $question->views) }}
+                                </div>
                             </div>
-                            <div class="status {{ $question->status }}">
-                                <strong>{{ $question->answers  }}</strong> {{ str_plural('answer', $question->asnwers) }}
+                    		<div class="media-body">
+                                <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
+                                <p class="lead">
+                                    Asked by
+                                    <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                    <small class="text-muted">{{ $question->created_date }}</small>
+                                </p>
+                                {{ str_limit($question->body , $limit = 200, $end = '...')}}      
                             </div>
-                            <div class="view">
-                                {{ $question->views . " " . str_plural('view', $question->views) }}
-                            </div>
-                        </div>
-                		<div class="media-body">
-                            <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
-                            <p class="lead">
-                                Asked by
-                                <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
-                                <small class="text-muted">{{ $question->created_date }}</small>
-                            </p>
-                            {{ str_limit($question->body , $limit = 200, $end = '...')}}      
-                        </div>
-                       
-                	</div>
-                    <hr>
+                           
+                    	</div>
+                        <hr>
                     @endforeach 	 
                    
 

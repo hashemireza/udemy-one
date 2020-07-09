@@ -15,6 +15,7 @@
                 </div>
 
                 <div class="card-body">
+                    {{-- @include('layouts._message') --}}
                     <form action="{{ route('questions.store') }}" method="post">
                         @csrf
                         <div class="form-group">
@@ -22,19 +23,19 @@
                             <input type="text" name="title" id="question-title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}">
 
                             @if ($errors->has('title'))
-                                <div class="invalid-feedback">
+                                <span class="help-block">
                                     <strong>{{ $errors->first('title') }}</strong>
-                                </div>
+                                </span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="question-body">Explain your Question</label>
                             <textarea name="body" id="question-body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="10"></textarea>
 
-                             @if ($errors->has('body'))
-                                <div class="invalid-feedback">
+                            @if ($errors->has('body'))
+                                <span class="help-block">
                                     <strong>{{ $errors->first('body') }}</strong>
-                                </div>
+                                </span>
                             @endif
                         </div>
                         <div class="form-group">

@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+// use RealRashid\SweetAlert\Facades\Alert;
 
 class QuestionController extends Controller
 {
+
+
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +47,18 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        dd('salam');
+        $validator = Validator::make($request->all(), [
+        'title' => 'required|min:3',
+        'body' => 'required|min:3'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors('error', $validator->messages()->all()[0])->withInput();
+        }
+       
+        $request->user()->questions()->create($request->only('title', 'body'));
+        // Alert::toast('Question Created Successfully!', 'success');  
+        return redirect('questions')->with('success', 'Question Created Successfully!');
     }
 
     /**
