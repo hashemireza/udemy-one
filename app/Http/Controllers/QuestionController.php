@@ -53,7 +53,7 @@ class QuestionController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors('error', $validator->messages()->all()[0])->withInput();
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
         }
        
         $request->user()->questions()->create($request->only('title', 'body'));
@@ -78,9 +78,10 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -92,7 +93,8 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'body'));
+        return redirect('questions')->with('success', 'Question Updated  Successfully!');
     }
 
     /**
