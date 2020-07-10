@@ -47,14 +47,20 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-        'title' => 'required|min:3',
-        'body' => 'required|min:3'
-        ]);
+         $this->validate($request, array(
+        'body' => 'required',
+        'title' => 'required'
+         ));
+        // other way to show validation error, but this is how to show in sweetalert
+     
+        // $validator = Validator::make($request->all(), [
+        // 'title' => 'required|min:3',
+        // 'body' => 'required|min:3'
+        // ]);
 
-        if ($validator->fails()) {
-            return back()->with('error', $validator->messages()->all()[0])->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return back()->with('error', $validator->messages()->all()[0])->withInput();
+        // }
        
         $request->user()->questions()->create($request->only('title', 'body'));
         // Alert::toast('Question Created Successfully!', 'success');  
@@ -69,7 +75,8 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        $question->increment('views');
+        return view('questions.show', compact('question'));
     }
 
     /**
