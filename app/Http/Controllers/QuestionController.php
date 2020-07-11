@@ -85,9 +85,9 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $question = Question::find($id);
+    public function edit(Question $question)
+    {  
+        $this->authorize('update', $question);
         return view('questions.edit', compact('question'));
     }
 
