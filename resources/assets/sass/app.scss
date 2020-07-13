@@ -5,8 +5,16 @@
 // Variables
 @import 'variables';
 
+$fa-font-path:  "webfonts/" !default;
+
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid";
+
 
 .navbar-laravel {
   background-color: #fff;
@@ -52,4 +60,47 @@
 
 .form-delete {
 	display: inline;
+}
+
+.vote-controls {
+	min-width: 60px;
+	margin-right: 30px;
+	text-align: center;
+	color: $gray-700;
+
+	span,a {
+		display: block;
+	}
+
+	span {
+		&.votes-count {
+			font-size: 25px;
+		}
+		&.favorites-count {
+			font-size: 12px;
+		}
+	}
+
+	a {
+		cursor: pointer;
+		color: $gray-600;
+
+		&.off, &.off:hover {
+			color: $gray-500;
+		}
+
+		&.favorite {
+			&.favorited, &.favorited:hover {
+				color: $warning;
+			}
+		}
+
+		&.vote-accepted {
+			color: green;
+		}
+	}
+
+	
+
+
 }
