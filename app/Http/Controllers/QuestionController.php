@@ -6,6 +6,7 @@ use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 // use RealRashid\SweetAlert\Facades\Alert;
+use Redirect;
 
 class QuestionController extends Controller
 {
@@ -47,20 +48,20 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request, array(
-        'body' => 'required',
-        'title' => 'required'
-         ));
+        //  $this->validate($request, array(
+        // 'body' => 'required',
+        // 'title' => 'required'
+        //  ));
         // other way to show validation error, but this is how to show in sweetalert
      
-        // $validator = Validator::make($request->all(), [
-        // 'title' => 'required|min:3',
-        // 'body' => 'required|min:3'
-        // ]);
+        $validator = Validator::make($request->all(), [
+        'title' => 'required|min:3',
+        'body' => 'required|min:3'
+        ]);
 
-        // if ($validator->fails()) {
-        //     return back()->with('error', $validator->messages()->all()[0])->withInput();
-        // }
+        if($validator->fails()) {
+            return redirect::back()->withErrors($validator);
+        }
        
         $request->user()->questions()->create($request->only('title', 'body'));
         // Alert::toast('Question Created Successfully!', 'success');  

@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="card-body">
-                    {{-- @include('layouts._message') --}}
+                    @include('layouts._message')
                     <form action="{{ route('questions.store') }}" method="post">
                         @include('questions._form', ['buttonText' => "Save"])
                     </form>
