@@ -34,9 +34,9 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question, Answer $answer, Request $request)
     {
-        //
+        return view('answers.edit', compact('answer', 'question'));
     }
 
     /**
@@ -46,9 +46,12 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  Question $question, Answer $answer)
     {
-        //
+        $answer->update($request->validate([
+            'body' => 'required'
+        ]));
+        return redirect()->route('questions.show', $question->id)->with('success', 'Your answer has been updated successfully!');
     }
 
     /**

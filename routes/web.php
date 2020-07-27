@@ -22,4 +22,4 @@ Auth::routes();
 
 Route::resource('questions', 'QuestionController');
 // Route::post('questions/{question}/answers', 'AnswerController@store')->name('answer.store');
-Route::resource('questions.answers', 'AnswerController')->except('index', 'show', 'create', 'update' , 'edit', 'destroy');
+Route::resource('questions.answers', 'AnswerController')->except('index', 'show', 'create');
