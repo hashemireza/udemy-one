@@ -16254,11 +16254,13 @@ readers do not read off random characters that represent icons */
 
 .counters .status.answered {
   border: 1px solid #5fbb7e;
+  border-radius: 2px;
   color: #5fbb7e;
 }
 
 .counters .status.answered-accepted {
   background: #5fbb7e;
+  border-radius: 2px;
   color: #fff;
 }
 
@@ -16306,6 +16308,6 @@ readers do not read off random characters that represent icons */
 }
 
 .vote-controls a.vote-accepted {
-  color: green;
+  color: #0dd839;
 }
 

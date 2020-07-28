@@ -39,7 +39,7 @@ class Question extends Model
     {
         if ($this->answers_count > 0) {
             if ($this->best_answer_id) {
-                return 'answered-accpeted';
+                return 'answered-accepted';
             }
             return 'answered';
         }

@@ -43,11 +43,13 @@ $fa-font-path:  "webfonts/" !default;
 
 		&.answered {
 			border: 1px solid $color-green;
+			border-radius: 2px;
 			color: $color-green;
 		}
 
 		&.answered-accepted {
 			background: $color-green;
+			border-radius: 2px;
 			color: $color-white;
 		}
 	}
@@ -96,7 +98,7 @@ $fa-font-path:  "webfonts/" !default;
 		}
 
 		&.vote-accepted {
-			color: green;
+			color: #0dd839;
 		}
 	}
 
