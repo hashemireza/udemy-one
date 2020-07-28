@@ -60,8 +60,9 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question, Answer $answer)
     {
-        //
+        $answer->delete();
+        return back()->with('success', 'Your answer has been deleted successfully!');
     }
 }

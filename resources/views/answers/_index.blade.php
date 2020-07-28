@@ -21,6 +21,7 @@
                                     <span class="favorites-count">123</span>
                                 </a>
                             </div>
+                             
                             <div class="media-body">
                                 {!! $answer->body_html !!}
                                 <div class="row">
